@@ -1,0 +1,75 @@
+/* colours */
+:root {
+    --primary: #771212;
+    --secondary:  #070706;
+    --title: #e4cccc;
+  }
+ 
+
+  .t-body{
+    opacity: 0.25;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* nav styles */
+  nav {
+    background: var(--primary);
+    border-bottom: 10px solid var(--secondary);
+    height: auto;
+
+  }
+  nav a {
+    text-transform: full-width;
+    color: var(--title);
+  }
+  nav a span {
+    font-weight: bold;
+    font-size: large;
+  }
+  nav .sidenav-trigger {
+    margin: 0;
+  }
+  
+  /* column styles */
+  .column{
+    margin-top: 10px;
+  }
+  .card-panel.column {
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(78, 75, 75, 0.842);
+    display: grid;
+    color: #000;
+    background-color: whitesmoke;
+    position: relative;   
+  }
+
+  .column-gap{
+    column-gap: normal;
+  }
+
+  .column img {
+    grid-area: image;
+    max-width: 75px;  
+  }
+  .column-details {
+    grid-area: details;
+    margin-top: 6px;
+  }
+  
+  .column-title {
+    font-weight: bold;
+    text-align: center;
+  }
+  .column-ingredients {
+    font-size: 0.8em;
+  }
+
+  .housing-img{
+    height: 75%;
+    width: 75%;
+  }
+  
