@@ -1,0 +1,9 @@
+{
+"name": "Student Portal of Information, Knowledge and Education",
+"short_name": "SPIKKE",
+"description": "Student Portal to access important informaiton",
+"start_url": "/index.html",
+"scope": ".",
+"display": ""
+
+}
