@@ -53,7 +53,7 @@
 
   .column img {
     grid-area: image;
-    max-width: 75px;  
+    max-width: 100px;  
   }
   .column-details {
     grid-area: details;
