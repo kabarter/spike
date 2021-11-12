@@ -19,10 +19,10 @@ self.addEventListener("install", function (event) {
     //here we are just logging the event and the contents of the oject passed
     //the purpose of this event is to give the service worker a place to setup the local environment 
     //after the installation completes
-    console.log('SW: Event fired: ${event.type}');
+    console.log(`SW: Event fired: ${event.type}`);
     event.waitUntil(
         caches.open("static").then(function (cache) {
-        console.log("SW: Precaching App shell");
+        console.log(`SW: Precaching App shell`);
         cache.addAll(assets)
     })
     );
@@ -31,7 +31,7 @@ self.addEventListener("install", function (event) {
 self.addEventListener("activate", function (event) {
     //fires after the browser completes activation
     //to activate user will need to reload the page or reopens page
-    console.log('SW: Event fired: ${event.type}');
+    console.log(`SW: Event fired: ${event.type}`);
 
 });
 
