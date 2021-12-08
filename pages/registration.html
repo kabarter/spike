@@ -49,33 +49,21 @@
     </ul>
     
     <!--Content-->
+   
     <div class="container">
         <h3 class="center">Registration</h3><p></p>
 
-        <form action="action_page.php">
-            <div class="container">
-    
-              <p>Please fill in this form to request a registration time.</p>
-              <hr>
-          
-              <label for="fname"><b>First Name</b></label>
-              <input type="text" placeholder="Enter first name" name="fname" id="fname" required>
-          
-              <label for="lname"><b>Last Name</b></label>
-              <input type="text" placeholder="Enter last name" name="lname" id="lname" required>
-          
-              <label for="program"><b>Program</b></label>
-              <input type="text" placeholder="Enter current program" name="program" id="program" required>
-              <hr>
-          
-              <p>By submitting the form, you will receive an email with your time of registration as well as a link to register. </p>
-              <button type="submit" class="submitbtn">Submit </button>
-            </div>
-          
-           
-          </form>
     </div>
+   
+    <div class="content">
+        <form id="add-bookstore-form">
+            <input type="text" name="name" placeholder="Bookstore name">
+            <input type="text" name="city" placeholder="Bookstore city">
+            <button>Add Bookstore</button>
+        </form>
+        <ul id="bookstore-list"></ul>
 
+    </div>
     <script src="/js/ui.js"></script>
         
     </body>
