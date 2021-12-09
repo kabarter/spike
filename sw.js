@@ -2,6 +2,7 @@
 const assets = [
     "/",
     "/index.html",
+    "/pages/",
     "/js/app.js",
     "/js/ui.js",
     "/js/materialize.min.js",
@@ -35,13 +36,25 @@ self.addEventListener("activate", function (event) {
 
 });
 
-self.addEventListener("fetch", function (event) {
-    //fires whenever the app requests a resource (file or data)
-    // console.log('SW: Fetching ${event.request.url}');
+// self.addEventListener("fetch", function (event) {
+//     //fires whenever the app requests a resource (file or data)
+//     // console.log('SW: Fetching ${event.request.url}');
     
-    //next, go get the requested resource from the network
-    event.respondWith(fetch(event.request));
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    });
-});
+//     //next, go get the requested resource from the network
+//     event.respondWith(fetch(event.request));
+//     caches.match(event.request).then((response) => {
+//       return response || fetch(event.request);
+//     });
+// });
+
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((resp) => {
+            return resp || fetch(event.request).then((response) =>{
+                return caches.open('static').then((cache) =>{
+                    cache.put(event.request, response.clone());
+                    return response;
+                })
+            })
+        }));
+})
