@@ -1,4 +1,8 @@
 //Need to add the root folder '/' so it will go to home page
+const staticCache = 'Static-v1'
+const dynamicCache = 'Dynamic-cache-v1'
+
+
 const assets = [
     '/',
     "/index.html",
@@ -20,7 +24,7 @@ self.addEventListener("install", function (event) {
     //after the installation completes
     console.log(`SW: Event fired: ${event.type}`);
     event.waitUntil(
-        caches.open("static").then(function (cache) {
+        caches.open("staticCache").then(function (cache) {
         console.log("SW: Precaching App shell");
         cache.addAll(assets);
     })
@@ -42,8 +46,10 @@ self.addEventListener("fetch", function (event) {
     //next, go get the requested resource from the network
   event.respondWith(
       caches.match(event.request).then((response) => {
-          return response || fetch(event.request);
+          return response || fetch(event.request).then(fetchRes => {
+              return caches.open(dynamicCache)
+          });
       })
-      );
+     );
    
 });
