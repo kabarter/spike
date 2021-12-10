@@ -39,17 +39,22 @@ self.addEventListener("activate", function (event) {
 });
 
 
-self.addEventListener("fetch", function (event) {
-    //fires whenever the app requests a resource (file or data)
-    //fetch api
-    // console.log('SW: Fetching ${event.request.url}');
-    //next, go get the requested resource from the network
-  event.respondWith(
-      caches.match(event.request).then((response) => {
-          return response || fetch(event.request).then(fetchRes => {
-              return caches.open(dynamicCache)
-          });
-      })
-     );
-   
+self.addEventListener("fetch", function (event){
+    event.respondWith(
+        caches.match(event.request).then((response)=>{
+            return (
+                response || 
+                fetch(event.request).then((fetchRes) => {
+                    return caches.open(dynamicCache).then((cache) => {
+                        cache.put(event.request.url, fetchRes.clone());
+                        return fetchRes;
+                    });
+                    
+                })
+            )
+        
+        })
+    );
 });
+
+  
