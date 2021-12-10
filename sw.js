@@ -1,6 +1,5 @@
 //Need to add the root folder '/' so it will go to home page
 const assets = [
-    "/",
     "/index.html",
     "/js/app.js",
     "/js/ui.js",
@@ -26,7 +25,7 @@ self.addEventListener("install", function (event) {
     event.waitUntil(
         caches.open("static").then(function (cache) {
         console.log(`SW: Precaching App shell`);
-        cache.addAll(assets)
+        cache.addAll(assets);
     })
     );
 });
@@ -39,10 +38,17 @@ self.addEventListener("activate", function (event) {
 });
 
 
-self.addEventListener("fetch", function (event){
+self.addEventListener("fetch", function (event) {
     //fires whenever the app requests a resource (file or data)
     //fetch api
-    console.log('SW: Fetching ${event.request.url}');
+    // console.log('SW: Fetching ${event.request.url}');
     //next, go get the requested resource from the network
-    event.respondWith(fetch(event.request));
+  event.respondWith(fetch(event.request));
+    caches.match(event.request).then(function (response){
+        if (response) {
+            return response;
+        } else {
+            return fetch(event.request);
+        }
+    });
 });
