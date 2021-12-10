@@ -1,5 +1,6 @@
 //Need to add the root folder '/' so it will go to home page
 const assets = [
+    '/',
     "/index.html",
     "/js/app.js",
     "/js/ui.js",
@@ -7,11 +8,7 @@ const assets = [
     "/css/materialize.min.css",
     "/css/app.css",
     "https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css",
-    "/img/",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
-    
-    
-
 
 ];
 
@@ -24,7 +21,7 @@ self.addEventListener("install", function (event) {
     console.log(`SW: Event fired: ${event.type}`);
     event.waitUntil(
         caches.open("static").then(function (cache) {
-        console.log(`SW: Precaching App shell`);
+        console.log("SW: Precaching App shell");
         cache.addAll(assets);
     })
     );
@@ -44,11 +41,7 @@ self.addEventListener("fetch", function (event) {
     // console.log('SW: Fetching ${event.request.url}');
     //next, go get the requested resource from the network
   event.respondWith(fetch(event.request));
-    caches.match(event.request).then(function (response){
-        if (response) {
-            return response;
-        } else {
-            return fetch(event.request);
-        }
+    caches.match(event.request).then((response) => {
+     return response || fetch(event.request);
     });
 });
