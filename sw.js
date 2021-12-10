@@ -40,8 +40,10 @@ self.addEventListener("fetch", function (event) {
     //fetch api
     // console.log('SW: Fetching ${event.request.url}');
     //next, go get the requested resource from the network
-  event.respondWith(fetch(event.request));
-    caches.match(event.request).then((response) => {
-     return response || fetch(event.request);
-    });
+  event.respondWith(
+      caches.match(event.request).then((response) => {
+          return response || fetch(event.request);
+      })
+      );
+   
 });
