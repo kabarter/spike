@@ -6,6 +6,7 @@ const dynamicCache = "Dynamic-cache-v1";
 const assets = [
     '/',
     "/index.html",
+    "/pages/fallback.html",
     "/img",
     "/js/app.js",
     "/js/ui.js",
@@ -33,6 +34,7 @@ self.addEventListener("install", function (event) {
 
 //fires after the browser completes activation
 //to activate user will need to reload the page or reopens page
+//deletes old cache
 self.addEventListener("activate", function (event) {
     event.waitUntil(
         caches.keys().then((keys) => {
