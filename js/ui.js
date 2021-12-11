@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function(){
     //Nav Menu
     const menus = document.querySelector(".side-menu");
@@ -6,3 +8,4 @@ document.addEventListener("DOMContentLoaded", function(){
     const forms = document.querySelector(".side-form");
     M.Sidenav.init(forms, {edge: "left" });
 });
+
