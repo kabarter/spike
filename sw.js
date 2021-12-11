@@ -62,7 +62,7 @@ self.addEventListener("fetch", function (event){
                 })
             )
         
-        })
+        }).catch(() => caches.match("/pages/fallback.html"))
     );
 });
 
