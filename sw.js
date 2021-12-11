@@ -6,6 +6,7 @@ const dynamicCache = 'Dynamic-cache-v1'
 const assets = [
     '/',
     "/index.html",
+    "/img",
     "/js/app.js",
     "/js/ui.js",
     "/js/materialize.min.js",
