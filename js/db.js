@@ -1,6 +1,16 @@
 // Import the functions from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-firestore.js";
+import { 
+    getFirestore, 
+    collection, 
+    getDocs, 
+    addDoc, 
+    doc, 
+    deleteDoc, 
+    query, 
+    where, 
+    enableIndexedDbPersistence 
+    } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,51 +29,67 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-async function getRegistrations(db) {
-    const registrationsCol = collection(db, "registration");
-    const registrationSnapshot = await getDocs(registrationsCol);
-    const registrationList = registrationSnapshot.docs.map((doc) => doc.data());
-    return registrationList;
+
+async function getCourses(db) {
+    const coursesCol = collection(db, "courses");
+    const courseSnapshot = await getDocs(coursesCol);
+    const courseList = courseSnapshot.docs.map((doc) => doc.data());
+    return courseList;
 }
 
+enableIndexedDbPersistence(db)
+  .catch((err) => {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled
+          // in one tab at a a time.
+          console.log("Persistence failed")
+
+      } else if (err.code == 'unimplemented') {
+          // The current browser does not support all of the
+          // features required to enable persistence
+          console.log("Persistence is not valid")
+      }
+  });
+
+
 //Accessing HTML elements for form and UL
-const registrationList = document.getElementById('registration-list');
-const form = document.getElementById('add-registration-form')
+const courseList = document.getElementById('course-list');
+const form = document.getElementById('add-course-form')
 
 
 // setting up LI and creating delete
-function renderRegistration(dc){
+function renderCourses(dc){
     let li = document.createElement("li");
-    let course_ID = document.createElement("span");
-    let course_name = document.createElement("span");
+    let code = document.createElement("span");
+    let name = document.createElement("span");
     let cross = document.createElement("div");
     
     li.setAttribute('data-id', dc.id);
-    course_ID.textContent = dc.data().course_ID;
-    course_name.textContent = dc.data().course_name;
-    cross.textContent = 'x';
+    code.textContent = dc.data().code;
+    name.textContent = dc.data().name;
+    cross.textContent = 'X';
 
-    li.appendChild(course_ID);
-    li.appendChild(course_name);
+    li.appendChild(code);
+    li.appendChild(name);
     li.appendChild(cross);
 
-    registrationList.appendChild(li);
+    courseList.appendChild(li);
 
     cross.addEventListener('click', (e) => {
         e.stopPropagation();
         let id = e.target.parentElement.getAttribute('data-id');
-        deleteDoc(doc(db, "registration", id))
+        deleteDoc(doc(db, "courses", id))
     })
 }
 
 //creating snapshot
-const registrations = getDocs(collection(db, 'registration')).then((snapshot) => {
+const courses = getDocs(collection(db, 'courses')).then((snapshot) => {
     snapshot.forEach((doc) =>{
-        renderRegistration(doc)
+        renderCourses(doc)
     })
 })
 
-const q = query(collection(db, "registration"), where("course_name", "==", "English Comp I"));
+const q = query(collection(db, "courses"), where("name", "==", "EN"));
 const querySnapshot =  await getDocs(q);
 querySnapshot.forEach((doc) => {
     console.log(doc.id, "=>", doc.data())
@@ -78,9 +104,9 @@ querySnapshot.forEach((doc) => {
 //submitting the form
 form.addEventListener(('submit'), (e) => {
     e.preventDefault();
-    const docRef = addDoc(collection(db, "registration"), {
-        course_name: form.course_name.value,
-        course_ID: form.course_ID.value,
+    const docRef = addDoc(collection(db, "courses"), {
+        name: form.name.value,
+        code: form.code.value,
     })
     
 })

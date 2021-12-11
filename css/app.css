@@ -2,7 +2,7 @@
 :root {
     --primary: #771212;
     --secondary:  #070706;
-    --title: #e4cccc;
+    --title: #faf5f5;
   }
 
   .t-body{
@@ -52,7 +52,7 @@
   .card-panel.column {
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0px 2px 5px rgba(78, 75, 75, 0.842);
+    box-shadow: 0px 2px 5px rgba(19, 16, 16, 0.842);
     display: grid;
     color: #000;
     background-color: rgb(247, 238, 238);
@@ -188,4 +188,10 @@
     padding: 10px 0;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  .model {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    
   }

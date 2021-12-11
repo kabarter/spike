@@ -1,6 +1,6 @@
 //Need to add the root folder '/' so it will go to home page
-const staticCache = "Static-cache-v1";
-const dynamicCache = "Dynamic-cache-v1";
+const staticCache = "Static-cache-v7";
+const dynamicCache = "Dynamic-cache-v8";
 
 
 const assets = [
@@ -39,7 +39,7 @@ self.addEventListener("install", function (event) {
     console.log(`SW: Event fired: ${event.type}`);
         event.waitUntil(
           caches.open(staticCache).then(function (cache) {
-            console.log("SW: Precaching App shell");
+            console.log(`SW: Precaching App shell`);
             cache.addAll(assets);
     })
     );
@@ -62,14 +62,15 @@ self.addEventListener("activate", function (event) {
 
 
 self.addEventListener("fetch", function (event){
-    event.respondWith(
+    if (event.request.url.indexOf("firestore.googleapis.com") === -1) {
+        event.respondWith(
         caches.match(event.request).then((response)=>{
             return (
                 response || 
                 fetch(event.request).then((fetchRes) => {
                     return caches.open(dynamicCache).then((cache) => {
                         cache.put(event.request.url, fetchRes.clone());
-                        limitCacheSize(dynamicCache, 5);
+                        limitCacheSize(dynamicCache, 15);
                         return fetchRes;
                     });
                     
@@ -78,6 +79,7 @@ self.addEventListener("fetch", function (event){
         
         }).catch(() => caches.match("/pages/fallback.html"))
     );
+    }
 });
 
   
