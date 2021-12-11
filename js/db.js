@@ -13,7 +13,7 @@ const firebaseConfig = {
     storageBucket: "spike-90e45.appspot.com",
     messagingSenderId: "841243009957",
     appId: "1:841243009957:web:ddd51ff546145e05f03e4c",
-    measurementId: "${config.measurementId}"
+    // measurementId: "${config.measurementId}"
 };
 
 // Initialize Firebase
@@ -71,7 +71,7 @@ querySnapshot.forEach((doc) => {
 
 const upDoc = doc(db, "registration", "VaHE5LyVO7mWuKEC4KeL");
   updateDoc(upDoc, {
-     course_ID: "Unique Books"
+     course_ID: "Zoo Keeper"
  })
 
 
