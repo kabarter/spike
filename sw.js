@@ -19,6 +19,18 @@ const assets = [
 
 ];
 
+
+//Cache size limit
+const limitCacheSize = (name, size) => {
+    caches.open(name).then((cache) => {
+        cache.keys().then((keys) => {
+            if(keys.length > size) {
+                cache.delete(keys[0]).then(limitCacheSize(name, size));
+            }
+        })
+    })
+}
+
 //fires when the browser intalls the app
     //here we are just logging the event and the contents of the oject passed
     //the purpose of this event is to give the service worker a place to setup the local environment 
@@ -41,7 +53,7 @@ self.addEventListener("activate", function (event) {
         caches.keys().then((keys) => {
         return Promise.all(
             keys
-            .filter((key) => key !== staticCache)
+            .filter((key) => key !== staticCache && key !== dynamicCache)
             .map((key) => caches.delete(key))
             );
         })
@@ -57,6 +69,7 @@ self.addEventListener("fetch", function (event){
                 fetch(event.request).then((fetchRes) => {
                     return caches.open(dynamicCache).then((cache) => {
                         cache.put(event.request.url, fetchRes.clone());
+                        limitCacheSize(dynamicCache, 5);
                         return fetchRes;
                     });
                     
