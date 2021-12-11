@@ -22,5 +22,3 @@ if("serviceWorker" in navigator) {
     }
 
 
-
-
