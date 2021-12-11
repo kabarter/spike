@@ -1,5 +1,5 @@
 //Need to add the root folder '/' so it will go to home page
-const staticCache = 'Static-v1'
+const staticCache = 'Static-cache-v1'
 const dynamicCache = 'Dynamic-cache-v1'
 
 
@@ -17,26 +17,32 @@ const assets = [
 
 ];
 
-
-self.addEventListener("install", function (event) {
-    //fires when the browser intalls the app
+//fires when the browser intalls the app
     //here we are just logging the event and the contents of the oject passed
     //the purpose of this event is to give the service worker a place to setup the local environment 
     //after the installation completes
+self.addEventListener("install", function (event) {
     console.log(`SW: Event fired: ${event.type}`);
-    event.waitUntil(
-        caches.open("staticCache").then(function (cache) {
-        console.log("SW: Precaching App shell");
-        cache.addAll(assets);
+        event.waitUntil(
+          caches.open("staticCache").then(function (cache) {
+            console.log("SW: Precaching App shell");
+            cache.addAll(assets);
     })
     );
 });
 
+//fires after the browser completes activation
+//to activate user will need to reload the page or reopens page
 self.addEventListener("activate", function (event) {
-    //fires after the browser completes activation
-    //to activate user will need to reload the page or reopens page
-    console.log(`SW: Event fired: ${event.type}`);
-
+    event.waitUntil(
+        caches.keys().then((keys) => {
+        return Promise.all(
+            keys
+            .filter((key) => key !== staticCache)
+            .map((key) => caches.delete(key))
+            );
+        })
+    ); 
 });
 
 
