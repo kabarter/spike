@@ -32,7 +32,20 @@
   nav .sidenav-trigger {
     margin: 0;
   }
-  
+
+  /*link styles*/
+
+  a:link {
+    color:#6e0e0e;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color:rgb(9, 9, 29);
+    text-decoration: none;
+  }
+
+
   /* column styles */
   .column{
     margin-top: 10px;
