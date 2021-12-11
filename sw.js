@@ -1,6 +1,6 @@
 //Need to add the root folder '/' so it will go to home page
-const staticCache = 'Static-cache-v1'
-const dynamicCache = 'Dynamic-cache-v1'
+const staticCache = "Static-cache-v1";
+const dynamicCache = "Dynamic-cache-v1";
 
 
 const assets = [
@@ -24,7 +24,7 @@ const assets = [
 self.addEventListener("install", function (event) {
     console.log(`SW: Event fired: ${event.type}`);
         event.waitUntil(
-          caches.open("staticCache").then(function (cache) {
+          caches.open(staticCache).then(function (cache) {
             console.log("SW: Precaching App shell");
             cache.addAll(assets);
     })
