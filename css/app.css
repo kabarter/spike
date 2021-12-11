@@ -99,42 +99,7 @@
     padding: 0;
   }
   
-  li {
-    padding: 20px;
-    background: #fafaee;
-    font-size: 20px;
-    color: #555;
-    position: relative;
-    border-bottom: 1px solid #e6e6e6;
-    height: 46px;
-  }
-  
-  li:nth-child(even) {
-    padding: 20px;
-    background: #f2f2f2;
-  }
-  
-  li span {
-    display: block;
-  }
-  
-  li span:nth-child(2) {
-    font-size: 16px;
-    margin-top: 6px;
-    color: #999;
-  }
-  
-  li div {
-    position: absolute;
-    top: 0;
-    right: 0px;
-    background: rgba(255, 255, 255, 0.6);
-    width: 40px;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: bold;
-    cursor: pointer;
-  }
+
   
   form input {
     float: left;
@@ -181,7 +146,6 @@
   }
 
   body {
-    background-image: url('img/rd_goldBckgrnd.jpg');
     background-color: #b3ccff;
     font-family: ubuntu;
      }
@@ -193,4 +157,35 @@
     letter-spacing: 2px;
     margin-top: 80px;
     text-align: center;
+  }
+
+  li {
+    padding: 20px;
+    background: #fafaee;
+    font-size: 20px;
+    color: #555;
+    position: relative;
+    border-bottom: 1px solid #e6e6e6;
+    height: 46px;
+  }
+  
+  li:nth-child(even) {
+    padding: 20px;
+    background: #f2f2f2;
+  }
+  
+  li span {
+    display: inline-block;
+  } 
+  
+  li div {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 40px;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    cursor: pointer;
   }

@@ -10,7 +10,7 @@ const assets = [
     "/img",
     "/js/app.js",
     "/js/ui.js",
-    "/js/firebase.js",
+    "/js/fire.js",
     "/js/materialize.min.js",
     "/css/materialize.min.css",
     "/css/app.css",
