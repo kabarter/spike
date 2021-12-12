@@ -15,8 +15,8 @@ const firebaseConfig = {
     storageBucket: "spike-90e45.appspot.com",
     messagingSenderId: "841243009957",
     appId: "1:841243009957:web:ddd51ff546145e05f03e4c",
-    // measurementId: "${config.measurementId}"
-};
+    measurementId: "G-QJ8442PC2N"
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -34,8 +34,7 @@ signupForm.addEventListener("submit", (e) => {
         console.log(user);
         const modal = document.querySelector("#modal-signup");
         Map.Modal.getInstance(modal).close();
-        window.location.replace("/pages/mail.html");
-        // signupForm.reset();
+        signupForm.reset();
         
     })
     .catch((error) => {
@@ -45,3 +44,36 @@ signupForm.addEventListener("submit", (e) => {
     });
 });
 
+//sign out 
+const logout = document.querySelector("#logout");
+logout.addEventListener("click", (e) => {
+    e.preventDefault();
+    signOut(auth).then(() => {
+        console.log("User has signed out");
+    }).catch((error) =>{
+        console.error(e.name);
+        console.error(e.message);
+    })
+});
+
+//login
+const loginForm = document.querySelector("#login-form");
+loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = loginForm["login-email"].value;
+    const password = loginForm["login-password"].value;
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        const modal = document.querySelector("#modal-signup");
+        Map.Modal.getInstance(modal).close();
+        loginForm.reset();
+        
+    })
+    .catch((error) => {
+        const errorCache = error.code;
+        const errorMessage = error.message;
+        loginForm.reset();
+    });
+});

@@ -46,59 +46,81 @@
       <li><a href="/pages/tuition.html" class="waves-effect">TUITION</a></li>
       <li><a href="/pages/registration.html" class="waves-effect">REGISTRATION</a></li>
       <li><a href="/pages/parking.html" class="waves-effect">PARKING</a></li>
-      <li><a href="/pages/housing.html" class="waves-effect">HOUSING</a></li>
-      
-     
+      <li><a href="/pages/housing.html" class="waves-effect">HOUSING</a></li>  
+    
   </ul>
-
 
           
    <div class="card p-4 p-lg-5 text-black">
      
-     <form>
+  
       
-      <h1>Login to Student Email</h1> <br />
+      <h1>Student Email</h1> <br />
       <br />
      
+      <li class="logged-in">
+        <a href="#" class="waves-effect" id="logout">Logout</a>
+      </li>
 
-      <!-- sign up modal -->
-  
+      <li class="logged-out">
+        <a href="#" class="waves-effect modal-trigger" data-target="modal-login">Login</a>
+      </li>
+
+      <li class="logged-out">
+        <a href="#" class="waves-effecct modal-trigger" data-target="modal-signup">Sign Up</a>
+      </li>
 
 
+      <p>
+       
+        <div id="modal-signup" class="modal">
+          <div class="modal-content">
+            <h3>Sign Up</h3> <br />
+            <br />
+            <form id="signup-form">
+              <div class="input-field">
+                <input type="email" id="signup-email" required>
+                <label for="signup-email">Email Address</label>
+              </div>
+              <br />
+              <br />
+              <div class="input-field">
+                <input type="password" id="signup-password" required>
+                <label for="signup-password">Choose Password</label>
+              </div>
+              <br />
+              <br />
+              <button class="btn gray">Sign Up</button>
+            </form>
+          </div>
+
+        </div>
+        <br />
+        <br />
+      <div></div>
+      </p>
+    
       <div id="modal-login" class="modal">
         <div class="modal-content">
-          <h4>Login</h4> <br />
+          <h3>Login</h3> <br />
           <form id="login-form">
             <div class="input-field">
               <input type="email" id="login-email" required />
-              <label for="login-email">Email Address</label>
+              <label for="login-email">Email address</label>
             </div>
             <div class="input-field">
               <input type="password" id="login-password" required />
-              <label for="login-password">Password</label>
+              <label for="login-password">Your Password</label>
             </div>
-            <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+            <button class="btn gray">Login</button>
           </form>
         </div>
-      </div>
 
-      <p> 
-        <a href="/pages/signup.html"><h4>Sign Up</h4></a><br />
+      </div>
+  
+
+
       
-      </p>
-
-
-
-   
-          <!-- <div class="pt-1 mb-4">
-            <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
-          </div> -->
-    
-        </div>
-        
-      </div>
-
-     
 
 
     </form>

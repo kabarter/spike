@@ -1,6 +1,6 @@
 //Need to add the root folder '/' so it will go to home page
-const staticCache = "Static-cache-v8";
-const dynamicCache = "Dynamic-cache-v9";
+const staticCache = "Static-cache-v10";
+const dynamicCache = "Dynamic-cache-v11";
 
 
 const assets = [
@@ -11,6 +11,7 @@ const assets = [
     "/js/app.js",
     "/js/ui.js",
     "/js/db.js",
+    "/js/auth.js",
     "/js/materialize.min.js",
     "/css/materialize.min.css",
     "/css/app.css",
