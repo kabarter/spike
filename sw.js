@@ -1,6 +1,6 @@
 //Need to add the root folder '/' so it will go to home page
-const staticCache = "Static-cache-v7";
-const dynamicCache = "Dynamic-cache-v8";
+const staticCache = "Static-cache-v8";
+const dynamicCache = "Dynamic-cache-v9";
 
 
 const assets = [

@@ -1,3 +1,4 @@
+//Authentication
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
 import {
     getAuth, 
@@ -22,12 +23,25 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 //signup 
-const signupform = document.querySelector("signup form");
-signupform.addEventListener("submit", (e) => {
+const signupForm = document.querySelector("#signup-form");
+signupForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const email = signupform["singup email"].value;
-    const password = signupform["signup password"].value;
-    createUserWithEmailAndPassword(auth, email, password).then((userCredentials) => {
-        const user = userCredentials.user
+    const email = signupForm["signup-email"].value;
+    const password = signupForm["signup-password"].value;
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        const modal = document.querySelector("#modal-signup");
+        Map.Modal.getInstance(modal).close();
+        window.location.replace("/pages/mail.html");
+        // signupForm.reset();
+        
     })
-})
+    .catch((error) => {
+        const errorCache = error.code;
+        const errorMessage = error.message;
+        signupForm.reset();
+    });
+});
+

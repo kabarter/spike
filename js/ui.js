@@ -1,14 +1,12 @@
 
-// const courses = document.querySelector(".courses");
-
-document.addEventListener('DOMContentLoaded', function() {
-    var models = document.querySelectorAll(".models");
-    M.model.init(models);
-
-    var items = document.querySelectorAll(".collapsible");
-    M.collapsible.init(items)
-})
-
+document.addEventListener("DOMContentLoaded", function(){
+    //Nav Menu
+    const menus = document.querySelector(".side-menu");
+    M.Sidenav.init(menus,{edge: "right" });
+    //Add tasks
+    const forms = document.querySelector(".side-form");
+    M.Sidenav.init(forms, {edge: "left" });
+});
 
 
 // const renderCourse = (data, id) => {
